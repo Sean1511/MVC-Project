@@ -1,0 +1,74 @@
+﻿@model IEnumerable<WebApplication1.Models.User>
+@using WebApplication1.Models;
+
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+    <title>UsersTable</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Users table:</h1>
+        @using (Html.BeginForm("UsersTable", "Admin"))
+        {
+            <p>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>First name</th>
+                            <th>Last name</th>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>User name</th>
+                            <th>Password</th>
+                            <th>Permission</th>
+                        </tr>
+                    </thead>
+                    @foreach (User us in Model)
+                    {
+                    <tr>
+                        <td>@(rowNo += 1)</td>
+                        <td>@us.FirstName</td>
+                        <td>@us.LastName</td>
+                        <td>@us.ID</td>
+                        <td>@us.Email</td>
+                        <td>@us.UserName</td>
+                        <td>@us.Password</td>
+                        <td>@us.Permission</td>
+                    </tr>
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

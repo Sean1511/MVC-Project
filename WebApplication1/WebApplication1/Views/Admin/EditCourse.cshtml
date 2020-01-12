@@ -1,0 +1,87 @@
+﻿@model WebApplication1.Models.Course
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>EditCourse</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Edit course:</h1>
+        @using (Html.BeginForm("SubmitEditCourse", "Admin", FormMethod.Post))
+        {
+        <h3>
+            Course Name: @Model.CourseName @Html.HiddenFor(m => m.CourseName)
+            <br />
+            <br />
+            Select new lecturer name: @Html.DropDownListFor(model => model.LecturerName, Model.GetAsSelectList())
+            <br />
+            <br />
+            Course ID: @Model.CourseId @Html.HiddenFor(m => m.CourseId)
+            <br />
+            <br />
+            Enter new date for moedA: @Html.TextBoxFor(m => m.MoedA)
+            <br />
+            <br />
+            Enter new class for moedA: @Html.DropDownListFor(m => m.ExamAClass, Model.ExamAClassList)
+            <br />
+            <br />
+            Enter new date for moedB: @Html.TextBoxFor(m => m.MoedB)
+            <br />
+            <br />
+            Enter new class for moedB: @Html.DropDownListFor(m => m.ExamBClass, Model.ExamBClassList)
+            <br />
+            <br />
+            Enter new lecture day: @Html.DropDownListFor(m => m.LectuerDay, Model.DayList)
+            <br />
+            <br />
+            Enter new lecture Start time: @Html.DropDownListFor(m => m.LectureStart, Model.LectureStartList)
+            <br />
+            <br />
+            Enter new lecture end time: @Html.DropDownListFor(m => m.LectureEnd, Model.LectureEndsList)
+            <br />
+            <br />
+            Enter new classroom: @Html.DropDownListFor(m => m.Classroom, Model.ClassroomList)
+            <br />
+            <br />
+            <input class="myButton" id="Submit" type="submit" value="Save changes" />
+            <br />
+            <br />
+        </h3>
+        }
+        @{
+            if (@ViewBag.messageError != null)
+            {
+                <div class="alert-box error"> <span>Error: </span> <h2>@ViewBag.messageError</h2></div>
+            }
+        }
+    </div>
+</body>
+</html>

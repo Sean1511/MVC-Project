@@ -1,0 +1,78 @@
+﻿@model WebApplication1.Models.Course
+@using WebApplication1.Models;
+
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+<link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LecturerHome</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Lecturer")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Lecturer")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+
+    <div>
+        @if (Session["UserName"] != null)
+        {
+            <h1>Welcome @ViewBag.Name </h1>
+        }
+        <h2>Personal schdule:</h2>
+        @using (Html.BeginForm("Index", "Lecturer"))
+        {
+            <p>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Course name</th>
+                            <th>Course id</th>
+                            <th>Lesson day</th>
+                            <th>Lesson starts at</th>
+                            <th>Lesson ends at</th>
+                            <th>Classroom</th>
+                            <th>Students list</th>
+                        </tr>
+                    </thead>
+                    @foreach (Course course in ViewBag.Courses)
+                    {
+                        <tr>
+                            <td>@(rowNo += 1)</td>
+                            <td>@course.CourseName</td>
+                            <td>@course.CourseId</td>
+                            <td>@course.LectuerDay</td>
+                            <td>@course.LectureStart</td>
+                            <td>@course.LectureEnd</td>
+                            <td>@course.Classroom</td>
+                            <td>@Html.ActionLink("Students list", "ViewStudents", new { id = course.CourseId })</td>
+                        </tr>
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

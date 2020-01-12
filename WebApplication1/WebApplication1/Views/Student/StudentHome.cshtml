@@ -1,0 +1,152 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModel>
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentHome</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Student")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Student")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+
+        @if (Session["UserName"] != null)
+        {
+            <h1>Welcome @ViewBag.name</h1>
+        }
+        <h2>Personal schdule:</h2>
+        @using (Html.BeginForm("Index", "Student"))
+        {
+            <p>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Course name</th>
+                            <th>Course id</th>
+                            <th>Lecturer name</th>
+                            <th>Lesson day</th>
+                            <th>Lesson starts at</th>
+                            <th>Lesson ends at</th>
+                            <th>Lesson Classroom</th>
+                            <th>Date of exam MoedA</th>
+                            <th>Classroom of exam MoedA</th>
+                            <th>Date of exam MoedB</th>
+                            <th>Classroom of exam MoedB</th>
+                            <th>Grade MoedA</th>
+                            <th>Grade MoedB</th>
+                            <th>Course grade</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        if (item.dat.StudentID == ViewBag.ID)
+                        {
+                    <tr>
+                        <td>@(rowNo += 1)</td>
+                        <td>@item.cour.CourseName</td>
+                        <td>@item.cour.CourseId</td>
+                        <td>@item.cour.LecturerName</td>
+                        <td>@item.cour.LectuerDay</td>
+                        <td>@item.cour.LectureStart</td>
+                        <td>@item.cour.LectureEnd</td>
+                        <td>@item.cour.Classroom</td>
+                        <td>@item.cour.MoedA</td>
+                        <td>@item.cour.ExamAClass</td>
+                        <td>@item.cour.MoedB</td>
+                        <td>@item.cour.ExamBClass</td>
+                        <td>
+                            @{
+                                if (item.cour.MoedA < DateTime.Now)
+                                {
+                                    if (@item.dat.GradeMoedA == -1)
+                                    {
+                                        @ViewBag.noGrade
+                                    }
+                                    else
+                                    {
+                                        @item.dat.GradeMoedA
+                                    }
+                                }
+                                else
+                                {
+                                    @ViewBag.noGrade
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.cour.MoedB < DateTime.Now)
+                                {
+                                    if (@item.dat.GradeMoedB == -1)
+                                    {
+                                        @ViewBag.noGrade
+                                    }
+                                    else
+                                    {
+                                        @item.dat.GradeMoedB
+                                    }
+                                }
+                                else
+                                {
+                                    @ViewBag.noGrade
+                                }
+                            }
+                        </td>
+                        <td>
+                            @{
+                                if (item.cour.MoedA < DateTime.Now)
+                                {
+                                    if (@item.dat.GradeMoedB == -1 && item.dat.GradeMoedA != -1)
+                                    {
+                                        @item.dat.GradeMoedA
+                                    }
+                                    else if (@item.dat.GradeMoedB == -1 && item.dat.GradeMoedA == -1)
+                                    {
+                                        @ViewBag.noGrade
+                                    }
+                                    else
+                                    {
+                                        @item.dat.GradeMoedB
+                                    }
+                                }
+                                else
+                                {
+                                    @ViewBag.noGrade
+                                }
+                            }
+                        </td>
+                    </tr>
+                        }
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

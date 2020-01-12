@@ -1,0 +1,86 @@
+﻿@model WebApplication1.Models.Data
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <title>UpdateGradePage</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Update grades:</h1>
+        @using (Html.BeginForm("SubmitGrade", "Admin", FormMethod.Post))
+        {
+        <h3>
+            Student name: @Model.StudentName @Html.HiddenFor(m => m.StudentName) @Html.HiddenFor(m => m.StudentID)
+            <br />
+            <br />
+            Course Name: @Model.CourseName @Html.HiddenFor(m => m.CourseName) @Html.HiddenFor(m => m.CourseID)
+            <br />
+            <br />
+            MoedA grade:
+            @{
+                if (ViewBag.UpdateMoedA == 1)
+                {
+                    @Html.TextBoxFor(m => m.GradeMoedA) @Html.ValidationMessageFor(x => x.GradeMoedA)
+                }
+                else
+                {
+                    @ViewBag.noUpdate @Html.HiddenFor(m => m.GradeMoedA)
+                }
+            }
+            <br />
+            <br />
+            MoedB grade:
+            @{
+                if (ViewBag.UpdateMoedB == 1)
+                {
+                    @Html.TextBoxFor(m => m.GradeMoedB) @Html.ValidationMessageFor(x => x.GradeMoedB)
+                }
+                else
+                {
+                    @ViewBag.noUpdate @Html.HiddenFor(m => m.GradeMoedB)
+                }
+            }
+            <br />
+            <br />
+            @{
+                if (ViewBag.UpdateMoedA == 1 || ViewBag.UpdateMoedB == 1)
+                {
+                    <input class="myButton" id="Submit" type="submit" value="Update" />
+                }
+            }
+        </h3>
+        }
+    </div>
+</body>
+</html>

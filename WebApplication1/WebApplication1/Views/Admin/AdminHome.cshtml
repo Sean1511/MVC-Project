@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <title>AdminHome</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        @if (Session["UserName"] != null)
+        {
+            <h1>Welcome @Session["AdminName"]</h1>
+        }
+        <h2>What do you want to do today?</h2>
+        <br />
+        <input class="myButton" type="button" value="Add new user" onclick="location.href='@Url.Action("Register","Admin")'" />
+        @{
+            if (@ViewBag.Message != null)
+            {
+                <div class="alert-box success"> <span>Success: </span> <h2>@ViewBag.Message</h2></div>
+            }
+        }
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Add new course" onclick="location.href='@Url.Action("AddCourse","Admin")'" />
+        @{
+            if (@ViewBag.Message1 != null)
+            {
+                <div class="alert-box success"> <span>Success: </span> <h2>@ViewBag.Message1</h2></div>
+            }
+        }
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Edit course" onclick="location.href='@Url.Action("SelectCourseToEdit","Admin")'" />
+        @{
+            if (@ViewBag.edit != null)
+            {
+                <div class="alert-box success"> <span>Success: </span> <h2>@ViewBag.edit</h2></div>
+            }
+        }
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Assign student" onclick="location.href='@Url.Action("AssignStudent","Admin")'" />
+        @{
+            if (@ViewBag.MessageAssign != null)
+            {
+                <div class="alert-box success"> <span>Success: </span> <h2>@ViewBag.MessageAssign</h2></div>
+            }
+        }
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Update exam grade" onclick="location.href='@Url.Action("SelectCourseToUpdateGrades","Admin")'" />
+        @{
+            if (@ViewBag.update != null)
+            {
+                <div class="alert-box success"> <span>Success: </span> <h2>@ViewBag.update</h2></div>
+            }
+        }
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Users table" onclick="location.href='@Url.Action("UsersTable","Admin")'" />
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Courses table" onclick="location.href='@Url.Action("CoursesTable","Admin")'" />
+        <br />
+        <br />
+        <input class="myButton" type="button" value="Students courses table" onclick="location.href='@Url.Action("SCTable","Admin")'" />
+    </div>
+</body>
+</html>

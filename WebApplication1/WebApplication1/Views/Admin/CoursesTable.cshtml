@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WebApplication1.Models.Course>
+@using WebApplication1.Models;
+
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+    <title>CoursesTable</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Courses table:</h1>
+        @using (Html.BeginForm("CoursesTable", "Admin"))
+        {
+            <p>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Course name</th>
+                            <th>Lecturer name</th>
+                            <th>Course id</th>
+                            <th>MoedA</th>
+                            <th>ExamAClass</th>
+                            <th>MoedB</th>
+                            <th>ExamBClass</th>
+                            <th>Lectuer day</th>
+                            <th>Lectuer start</th>
+                            <th>Lectuer end</th>
+                            <th>Classroom</th>
+                        </tr>
+                    </thead>
+                    @foreach (Course cs in Model)
+                    {
+                    <tr>
+                        <td>@(rowNo += 1)</td>
+                        <td>@cs.CourseName</td>
+                        <td>@cs.LecturerName</td>
+                        <td>@cs.CourseId</td>
+                        <td>@cs.MoedA</td>
+                        <td>@cs.ExamAClass</td>
+                        <td>@cs.MoedB</td>
+                        <td>@cs.ExamBClass</td>
+                        <td>@cs.LectuerDay</td>
+                        <td>@cs.LectureStart</td>
+                        <td>@cs.LectureEnd</td>
+                        <td>@cs.Classroom</td>
+                    </tr>
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

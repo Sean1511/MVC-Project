@@ -1,0 +1,91 @@
+﻿@model WebApplication1.Models.Data
+@using WebApplication1.Models;
+
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewStudents</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Lecturer")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Lecturer")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        @using (Html.BeginForm("UpdateGrades", "Lecturer"))
+        {
+            <p>
+                <h1>Students list</h1>
+                <h2>Course : @ViewBag.course</h2>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Student name</th>
+                            <th>MoedA grade</th>
+                            <th>MoedB grade</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    @foreach (Data dat in ViewBag.List)
+                    {
+                        <tr>
+                            <td>@(rowNo += 1)</td>
+                            <td>@dat.StudentName</td>
+                            <td>
+                                @{
+                                    if (@dat.GradeMoedA == -1)
+                                    {
+                                        @ViewBag.noGrade
+                                    }
+                                    else
+                                    {
+                                        @dat.GradeMoedA
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    if (@dat.GradeMoedB == -1)
+                                    {
+                                        @ViewBag.noGrade
+                                    }
+                                    else
+                                    {
+                                        @dat.GradeMoedB
+                                    }
+                                }
+                            </td>
+                            <td>@Html.ActionLink("Update grades", "UpdateGrades", new { name = dat.StudentName, id = dat.CourseID })</td>
+                        </tr>
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

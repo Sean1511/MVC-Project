@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCModelStoreContainer" CdmEntityContainer="MVCEntities">
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="MVCModel.Courses">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="LecturerName" ColumnName="LecturerName" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="MoedA" ColumnName="MoedA" />
+          <ScalarProperty Name="MoedB" ColumnName="MoedB" />
+          <ScalarProperty Name="LectuerDay" ColumnName="LectuerDay" />
+          <ScalarProperty Name="LectureStart" ColumnName="LectureStart" />
+          <ScalarProperty Name="LectureEnd" ColumnName="LectureEnd" />
+          <ScalarProperty Name="Classroom" ColumnName="Classroom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Data">
+      <EntityTypeMapping TypeName="MVCModel.Data">
+        <MappingFragment StoreEntitySet="Data">
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="CourseID" ColumnName="CourseID" />
+          <ScalarProperty Name="GradeMoedA" ColumnName="GradeMoedA" />
+          <ScalarProperty Name="GradeMoedB" ColumnName="GradeMoedB" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

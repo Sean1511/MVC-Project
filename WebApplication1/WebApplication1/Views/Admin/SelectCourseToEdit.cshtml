@@ -1,0 +1,53 @@
+﻿@model WebApplication1.Models.Course
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <title>SelectCourse</title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Edit course:</h1>
+        @using (Html.BeginForm("EditCourse", "Admin", FormMethod.Post))
+        {
+        <h3>
+            Select course to edit: @Html.DropDownListFor(model => model.CourseId, Model.GetAsCourseIDList())
+            <br />
+            <br />
+            <input class="myButton" id="Submit" type="submit" value="Select" />
+            <br />
+            <br />
+        </h3>
+        }
+    </div>
+</body>
+</html>

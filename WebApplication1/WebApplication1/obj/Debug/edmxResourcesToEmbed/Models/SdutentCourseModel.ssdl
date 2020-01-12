@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LecturerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CourseId" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MoedA" Type="datetime" Nullable="false" />
+    <Property Name="MoedB" Type="datetime" Nullable="false" />
+    <Property Name="LectuerDay" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LectureStart" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LectureEnd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Classroom" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Data">
+    <Key>
+      <PropertyRef Name="StudentName" />
+      <PropertyRef Name="CourseID" />
+    </Key>
+    <Property Name="StudentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CourseName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CourseID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GradeMoedA" Type="int" Nullable="false" />
+    <Property Name="GradeMoedB" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MVCModelStoreContainer">
+    <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Data" EntityType="Self.Data" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

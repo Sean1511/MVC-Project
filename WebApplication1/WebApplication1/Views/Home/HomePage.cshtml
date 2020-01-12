@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Homepage.css" />
+    <title>HomePage</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Login")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Login
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+</body>
+</html>

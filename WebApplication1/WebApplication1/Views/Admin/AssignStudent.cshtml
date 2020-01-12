@@ -1,0 +1,60 @@
+﻿@model WebApplication1.Models.Data
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <title>AssignStudent</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Assign student:</h1>
+        @using (Html.BeginForm("SubmitAssignStudent", "Admin", FormMethod.Post))
+        {
+        <h3>
+            Select student: @Html.DropDownListFor(model => model.StudentID, Model.GetAsStudentsList()) @Html.ValidationMessageFor(x => x.StudentID)
+            <br />
+            <br />
+            Select course @Html.DropDownListFor(model => model.CourseID, Model.GetAsCourseList()) @Html.ValidationMessageFor(x => x.CourseID)
+            <br />
+            <br />
+            <input class="myButton" id="Submit" type="submit" value="Assign student" />
+            <br />
+            <br />
+        </h3>
+        }
+        @{
+            if (@ViewBag.messageDupCourse != null)
+            {
+                <div class="alert-box error"> <span>Error: </span> <h2>@ViewBag.messageDupCourse</h2></div>
+            }
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebApplication1.Models.Data>
+@using WebApplication1.Models;
+
+@{
+    Layout = null;
+}
+@{ int rowNo = 0; }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" type="text/css" href="~/Style/Page.css" />
+    <link rel="stylesheet" type="text/css" href="~/Style/GradeTable.css" />
+    <title>UsersTable</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="menu">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Index", "Admin")">
+                        <span class="glyphicon glyphicon-home"></span>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Logout", "Admin")">
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br />
+    <br />
+    <br />
+    <div>
+        <h1>Students courses table:</h1>
+        @using (Html.BeginForm("UsersTable", "Admin"))
+        {
+            <p>
+                <table class="paleBlueRows">
+                    <thead>
+                        <tr>
+                            <th>Number</th>
+                            <th>Student name</th>
+                            <th>Student ID</th>
+                            <th>Course name</th>
+                            <th>Course id</th>
+                            <th>MoedA grade</th>
+                            <th>MoedB grade</th>
+                        </tr>
+                    </thead>
+                    @foreach (Data dt in Model)
+                    {
+                        <tr>
+                            <td>@(rowNo += 1)</td>
+                            <td>@dt.StudentName</td>
+                            <td>@dt.StudentID</td>
+                            <td>@dt.CourseName</td>
+                            <td>@dt.CourseID</td>
+                            <td>@dt.GradeMoedA</td>
+                            <td>@dt.GradeMoedB</td>
+                        </tr>
+                    }
+                </table>
+            </p>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿body {
+    background-image: url(sce.png);
+    background-size:1950px;
+}
+
+#menu ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    position:absolute;
+    left:270px;
+    top:450px;
+}
+
+    #menu ul li {
+        background-color: #0B6FA4;
+        border: solid 1px white;
+        width: 120px;
+        height: 35px;
+        text-align: center;
+        line-height: 35px;
+        float: left;
+        border-radius: 10px;
+    }
+
+        #menu ul li a {
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            font-size: 20px;
+        }
+
+            #menu ul li a:hover {
+                background-color: aliceblue;
+                color: black;
+            }
